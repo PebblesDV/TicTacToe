@@ -20,10 +20,6 @@ let playerTurn = "";
 let gameStatus = "";
 let button;
 
-let startTime;
-let timerDuration = 30000;
-let timerActive = false;
-
 //checking who won and what tiles they filled to win
 function checkBoard(player) {
   if (cell1Color == player && cell2Color == player && cell3Color == player) {
@@ -119,7 +115,7 @@ function checkWin() {
     noStroke();
     textSize(30);
     fill("white");
-    text(player2 + " won the game!", 270, 150);
+    text(player2 + " won the game!", 278, 150);
     gameStatus = "finished";
   }
 
@@ -151,14 +147,15 @@ function setup() {
   button = createButton("Choose player");
   button.position(350, 80);
   button.mousePressed(chooseStartingPlayer);
+
+  //button for refreshPage
+  button = createButton("Restart game");
+  button.position(353, 30);
+  button.mousePressed(refreshPage);
 }
 
 function draw() {
   background(80, 80, 80);
-
-  if (timerActive) {
-    let elapsedTime = millis() - startTime;
-  }
 
   //all text
   textSize(20);
@@ -299,4 +296,9 @@ function mouseClicked() {
       switchPlayerTurn();
     }
   }
+}
+
+//function for the 'Restart game' button
+function refreshPage() {
+  window.location.reload();
 }
